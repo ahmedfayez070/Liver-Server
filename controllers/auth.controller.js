@@ -43,7 +43,7 @@ export const login = async (req, res, next) => {
     const age = 1000 * 60 * 60 * 24 * 7;
     const { password, ...others } = user._doc;
     return res
-      .cookie("token", token, { maxAge: age, httpOnly: true })
+      .cookie("token", token, { maxAge: age, httpOnly: true, sameSite: false })
       .status(200)
       .json(others);
   } catch (error) {
