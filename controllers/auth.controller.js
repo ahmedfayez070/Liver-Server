@@ -41,10 +41,7 @@ export const login = async (req, res, next) => {
     );
 
     const { password, ...others } = user._doc;
-    return res
-      .cookie("accessToken", { httpOnly: true })
-      .status(200)
-      .json({ data: others, token });
+    return res.cookie("token", { httpOnly: true }).status(200).json(others);
   } catch (error) {
     next(error);
   }
@@ -52,7 +49,7 @@ export const login = async (req, res, next) => {
 
 export const logout = async (req, res) => {
   return res
-    .clearCookie("accessToken", { sameSite: "none", secure: true })
+    .clearCookie("token", { sameSite: "none", secure: true })
     .status(200)
     .json("User has logged out");
 };
