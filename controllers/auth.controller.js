@@ -40,9 +40,10 @@ export const login = async (req, res, next) => {
       process.env.JWT
     );
 
+    const age = 1000 * 60 * 60 * 24 * 7;
     const { password, ...others } = user._doc;
     return res
-      .cookie("token", token, { httpOnly: true })
+      .cookie("token", token, { maxAge: age, httpOnly: true })
       .status(200)
       .json(others);
   } catch (error) {
