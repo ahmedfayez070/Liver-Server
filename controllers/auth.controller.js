@@ -47,7 +47,8 @@ export const login = async (req, res, next) => {
         maxAge: age,
         httpOnly: true,
         sameSite: "none",
-        secure: true,
+        // secure: true,
+        secure: false,
       })
       .status(200)
       .json(others);
